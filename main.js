@@ -117,15 +117,6 @@ function addMaterial() {
 
   str = `
 
-<div class="col-sm-2 mb-3">
-
-<div class="card">
-  <img  src="img/material/aluminum.png" class="card-img" alt="img">
-  <div onclick="changeText(1,'aluminum'); changeThumbnail(1,'aluminum')" class="card-img-overlay align-items-center d-flex justify-content-center">
-    <p class="card-text text-center">Aluminum</p>
-  </div>
-</div>
-</div>
 
 <div class="col-sm-2 mb-3">
 
@@ -187,6 +178,89 @@ function addMaterial() {
   </div>
 </div>
 </div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img src="img/material/plastic.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'plastic')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Plastic</p>
+  </div>
+</div>
+</div>
+
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img src="img/material/marble.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'marble')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Marble</p>
+  </div>
+</div>
+</div>
+
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img src="img/material/concrete.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'concrete')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Concrete</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img src="img/material/gold.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'gold')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Gold</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img src="img/material/silver.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'silver')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Gold</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img  src="img/material/aluminum.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'aluminum'); changeThumbnail(1,'aluminum')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Aluminum</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img  src="img/material/cloth.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'cloth'); changeThumbnail(1,'cloth')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Cloth</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img  src="img/material/ceramic.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'ceramic'); changeThumbnail(1,'ceramic')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Ceramic</p>
+  </div>
+</div>
+</div>
+
   `
   // ms.insertAdjacentHTML('afterbegin', str);
   ms.innerHTML = str
@@ -217,7 +291,7 @@ function addFinish() {
 
 <div class="col-sm-2 mb-3">
   <div class="card">
-    <img src="img/finish/high_gloss.png" class="card-img" alt="img">
+    <img src="img/finish/high gloss.png" class="card-img" alt="img">
     <div onclick="changeText(2,'high gloss')" class="card-img-overlay align-items-center d-flex justify-content-center ">
       <p class="card-text text-center">High gloss</p>
     </div>
@@ -245,25 +319,6 @@ function addFinish() {
   </div>
 </div>
 
-<div class="col-sm-2 mb-3">
-
-  <div class="card">
-    <img src="img/finish/brass.png" class="card-img" alt="img">
-    <div onclick="changeText(2,'brass')" class="card-img-overlay align-items-center d-flex justify-content-center">
-      <p class="card-text text-center">Brass</p>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-2 mb-3">
-
-  <div class="card">
-    <img src="img/finish/ice.png" class="card-img" alt="img">
-    <div onclick="changeText(2,'ice')" class="card-img-overlay align-items-center d-flex justify-content-center">
-      <p class="card-text text-center">Ice</p>
-    </div>
-  </div>
-</div>
 
 <div class="col-sm-2 mb-3">
 
@@ -305,15 +360,6 @@ function addFinish() {
   </div>
 </div>
 
-<div class="col-sm-2 mb-3">
-
-  <div class="card">
-    <img src="img/finish/florentine.png" class="card-img" alt="img">
-    <div onclick="changeText(2,'florentine')" class="card-img-overlay align-items-center d-flex justify-content-center">
-      <p class="card-text text-center">Florentine</p>
-    </div>
-  </div>
-</div>
 
 <div class="col-sm-2 mb-3">
 
@@ -341,6 +387,38 @@ function addFinish() {
     <img src="img/finish/oxidation.png" class="card-img" alt="img">
     <div onclick="changeText(2,'oxidation')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Oxidation</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/finish/semi gloss.png" class="card-img" alt="img">
+    <div onclick="changeText(2,'semi gloss')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text text-center">Semi Gloss</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/finish/broken glass.png" class="card-img" alt="img">
+    <div onclick="changeText(2,'broken glass')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text text-center">Broken Glass</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/finish/polished plaster.png" class="card-img" alt="img">
+    <div onclick="changeText(2,'polished plaster')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text text-center">Polished Plaster</p>
     </div>
   </div>
 </div>
@@ -479,7 +557,7 @@ function addColor() {
 <div class="col-sm-1 p-0 m-2">
 
 <div class="card">
-<img src="img/color/maroon.png" class="card-img" alt="img">
+<img src="img/color/maroon.png" class="card-img" alt="img" style = "height:150px">
 <div onclick="changeText(0,'maroon')" class="card-img-overlay align-items-center d-flex justify-content-center">
   <p class="card-text text-center">Maroon</p>
 </div>
@@ -491,7 +569,7 @@ function addColor() {
 <div class="col-sm-1 p-0 m-2">
 
   <div class="card">
-    <img src="img/color/plum.png" class="card-img" alt="img">
+    <img src="img/color/plum.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'plum')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Plum</p>
     </div>
@@ -500,7 +578,7 @@ function addColor() {
 
 <div class="col-sm-1 m-2 p-0">
   <div class="card">
-    <img src="img/color/purple.png" class="card-img" alt="img">
+    <img src="img/color/purple.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'purple')" class="card-img-overlay align-items-center d-flex justify-content-center ">
       <p class="card-text text-center">Purple</p>
     </div>
@@ -511,7 +589,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/violet.png" class="card-img" alt="img">
+    <img src="img/color/violet.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'violet')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Violet</p>
     </div>
@@ -521,7 +599,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/lavender.png" class="card-img" alt="img">
+    <img src="img/color/lavender.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'lavender')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Lavender</p>
     </div>
@@ -531,7 +609,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/pink.png" class="card-img" alt="img">
+    <img src="img/color/pink.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'pink')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Pink</p>
     </div>
@@ -541,7 +619,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/mauve.png" class="card-img" alt="img">
+    <img src="img/color/mauve.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'mauve')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Mauve</p>
     </div>
@@ -551,7 +629,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/lilac.png" class="card-img" alt="img">
+    <img src="img/color/lilac.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'lilac')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Lilac</p>
     </div>
@@ -562,7 +640,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/grey.png" class="card-img" alt="img">
+    <img src="img/color/grey.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'grey')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Grey</p>
     </div>
@@ -572,7 +650,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/brown.png" class="card-img" alt="img">
+    <img src="img/color/brown.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'brown')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Brown</p>
     </div>
@@ -583,7 +661,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/black.png" class="card-img" alt="img">
+    <img src="img/color/black.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'black')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Black</p>
     </div>
@@ -594,7 +672,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/indigo.png" class="card-img" alt="img">
+    <img src="img/color/indigo.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'indigo')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Indigo</p>
     </div>
@@ -604,7 +682,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/blue.png" class="card-img" alt="img">
+    <img src="img/color/blue.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'blue')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Blue</p>
     </div>
@@ -614,7 +692,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/teal.png" class="card-img" alt="img">
+    <img src="img/color/teal.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'teal')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Teal</p>
     </div>
@@ -624,7 +702,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/green.png" class="card-img" alt="img">
+    <img src="img/color/green.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'green')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Green</p>
     </div>
@@ -634,7 +712,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/aqua.png" class="card-img" alt="img">
+    <img src="img/color/aqua.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'aqua')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Aqua</p>
     </div>
@@ -646,7 +724,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/olive.png" class="card-img" alt="img">
+    <img src="img/color/olive.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'olive')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Olive</p>
     </div>
@@ -656,7 +734,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/lime.png" class="card-img" alt="img">
+    <img src="img/color/lime.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'lime')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Lime</p>
     </div>
@@ -665,7 +743,7 @@ function addColor() {
 
 <div class="col-sm-1 m-2 p-0">
 <div class="card">
-<img src="img/color/red.png" class="card-img" alt="img">
+<img src="img/color/red.png" class="card-img" alt="img" style = "height:150px">
 <div onclick="changeText(0,'red')" class="card-img-overlay align-items-center d-flex justify-content-center">
   <p class="card-text text-center">Red</p>
 </div>
@@ -677,7 +755,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/orange.png" class="card-img" alt="img">
+    <img src="img/color/orange.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'orange')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Orange</p>
     </div>
@@ -687,7 +765,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/salmon.png" class="card-img" alt="img">
+    <img src="img/color/salmon.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'salmon')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Salmon</p>
     </div>
@@ -697,7 +775,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/peach.png" class="card-img" alt="img">
+    <img src="img/color/peach.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'peach')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Peach</p>
     </div>
@@ -707,7 +785,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/mustard.png" class="card-img" alt="img">
+    <img src="img/color/mustard.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'mustard')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Mustard</p>
     </div>
@@ -717,7 +795,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/ochre.png" class="card-img" alt="img">
+    <img src="img/color/ochre.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'ochre')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Ochre</p>
     </div>
@@ -729,7 +807,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/yellow.png" class="card-img" alt="img">
+    <img src="img/color/yellow.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'yellow')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Yellow</p>
     </div>
@@ -739,7 +817,7 @@ function addColor() {
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
-    <img src="img/color/cream.png" class="card-img" alt="img">
+    <img src="img/color/cream.png" class="card-img" alt="img" style = "height:150px">
     <div onclick="changeText(0,'cream')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text text-center">Cream</p>
     </div>
