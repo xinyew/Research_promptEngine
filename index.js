@@ -36,18 +36,20 @@ function addStyle() {
   i = components
   li =
     `
-    <li class="nav-item deleteTag" id="deleteTag#${i}">
-      <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
-        <img class="rounded-circle me-1" id="thumbnail#${i}" width="18" height="18" src="img/default_${str}.png" alt="">
-        <div onclick="${oc}" id="tag#${i}">
-          ${str}
-        </div>
-        &nbsp&nbsp
-        <svg class="bi" width="12" height="12" id="delSvg#3" onclick="delSvgToLi(this.id)">
-          <use xlink:href="#x-circle-fill" />
-        </svg>
-      </span>
-    </li>
+    <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+      <li class="nav-item deleteTag" id="deleteTag#${i}">
+        <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
+          <img class="rounded-circle me-1" id="thumbnail#${i}" width="18" height="18" src="img/default_${str}.png" alt="">
+          <div onclick="${oc}" id="tag#${i}" class="component">
+            ${str}
+          </div>
+          &nbsp&nbsp
+          <svg class="bi" width="12" height="12" id="delSvg#3" onclick="delSvgToLi(this.id)">
+            <use xlink:href="#x-circle-fill" />
+          </svg>
+        </span>
+      </li>
+    </div>
     `
   tagList.insertAdjacentHTML('beforeend', li);
   components++;
@@ -70,18 +72,20 @@ function addTag() {
     li =
       //这是每按下便加一个list item,并显示出来
       `
-    <li class="nav-item deleteTag" id="deleteTag#${components}"> 
-      <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
-        <img class="rounded-circle me-1" id="thumbnail#${components}" width="18" height="18" src="img/default_${str}.png" alt="">
-        <div onclick="${oc}" id="tag#${components}"> 
-          ${str}
-        </div>
-        &nbsp&nbsp
-        <svg class="bi" width="12" height="12" id="delSvg#${components}" onclick="delSvgToLi(this.id)">
-          <use xlink:href="#x-circle-fill" />
-        </svg>
-      </span>
-    </li>
+    <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+      <li class="nav-item deleteTag" id="deleteTag#${components}"> 
+        <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
+          <img class="rounded-circle me-1" id="thumbnail#${components}" width="18" height="18" src="img/default_${str}.png" alt="">
+          <div onclick="${oc}" id="tag#${components}" class="component"> 
+            ${str}
+          </div>
+          &nbsp&nbsp
+          <svg class="bi" width="12" height="12" id="delSvg#${components}" onclick="delSvgToLi(this.id)">
+            <use xlink:href="#x-circle-fill" />
+          </svg>
+        </span>
+      </li>
+    </div>
     `
     tagList.insertAdjacentHTML('beforeend', li);
     components += 1
@@ -92,17 +96,22 @@ function addTag() {
 
 //这是每按下便加一个list item,并显示出来
 function addInput(text) {
-  textInputs = document.getElementsByClassName("textInput")
-  length = textInputs.length
   li =
     `
-  <div class="textInput xs-2 col-md-2" id="textInput">
-    <form role="search">
-      <input id="textInput#${length}}" value="${text}" class="form-control" placeholder=${text}>
-    </form>
+  <div class="xs-2 col-sm-2 px-3">
+      <input id="textInput#${components}" 
+             value="${text}" 
+             class="form-control textInput component" 
+             placeholder=${text}>
   </div>
   `
   tagList.insertAdjacentHTML('beforeend', li);
+  li = document.getElementById(`textInput#${components}`)
+  const inputHandler = function (e) {
+    getFullText()
+  }
+  li.addEventListener('input', inputHandler)
+  components += 1
 }
 
 function changeText(tagIdx, cfmIdx, text) {
@@ -147,12 +156,16 @@ function changeThumbnail(tagIdx, cfmIdx, text) {
 function getFullText() {
   wholeText = ""
 
-  for (var i = 0; i < components; i++) {
-    ele = document.getElementById(`tag#${i}`)
-    eleText = ele.innerText;
-    console.log(eleText)
+  ll = document.getElementsByClassName("component")
+
+  for (var i = 0; i < ll.length; i++) {
+    ele = ll[i]
+    if (ele.id.startsWith("textInput#")) {
+      eleText = ele.value
+    } else {
+      eleText = ele.innerText;
+    }
     wholeText = wholeText + " " + eleText
-    console.log(wholeText)
   }
   document.getElementById("fullText").innerHTML = wholeText
 }
