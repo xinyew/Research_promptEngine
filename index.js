@@ -28,6 +28,7 @@ function delSvgToLi(clicked_id) {
     ele.innerHTML = ""
   }
   components -= 1
+  getFullText()
 }
 
 function addStyle() {
@@ -44,7 +45,7 @@ function addStyle() {
             ${str}
           </div>
           &nbsp&nbsp
-          <svg class="bi" width="12" height="12" id="delSvg#3" onclick="delSvgToLi(this.id)">
+          <svg class="bi" width="12" height="12" id="delSvg#${components}" onclick="delSvgToLi(this.id)">
             <use xlink:href="#x-circle-fill" />
           </svg>
         </span>
@@ -53,6 +54,7 @@ function addStyle() {
     `
   tagList.insertAdjacentHTML('beforeend', li);
   components++;
+  getFullText()
 }
 
 function addTag() {
@@ -90,6 +92,7 @@ function addTag() {
     tagList.insertAdjacentHTML('beforeend', li);
     components += 1
   }
+  getFullText()
   console.log(components);
 }
 
