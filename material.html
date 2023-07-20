@@ -114,30 +114,50 @@
   <div class="container p-0 mx-5 my-5 py-5 px-5">
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
-      <div class="container-fluid">
 
-        <div class="mx-2 col-sm-2">
+      <div class="container-fluid" id="inputContainer">
+
+        <!-- <div class="mx-2 col-sm-2">
           <form role="search">
             <input id="objName" class="form-control" type="search" placeholder="Object Name" aria-label="A watch">
           </form>
+        </div> -->
+
+        <div class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" onclick="addInput('A watch'), addTag() 
+                addInput('with straps in'), addTag(),addStyle()">
+                Watch</a>
+            </li>
+            <li><a class="dropdown-item" onclick="addInput('A chair'),addTag(), 
+                addInput('with back in'),addTag(),addStyle()">
+                Chair</a>
+            <li><a class="dropdown-item" onclick="removeAll()">Remove</a>
+            </li>
+          </ul>
         </div>
-        <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+
+        <div class=" collapse navbar-collapse d-lg-flex" id="navbarsExample11">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="tagList">
           </ul>
 
           <div class="nav-item dropdown mx-4">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Options</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" onclick="addTag(0),addTag(2), addTag(1)">Add Element</a></li>
-              <li><a class="dropdown-item" onclick="addTag(3)">Image Style</a></li>
+              <li><a class="dropdown-item" onclick="addTag()">Add
+                  Element</a>
+              </li>
+              <li><a class="dropdown-item" onclick="addStyle()">Image Style</a></li>
             </ul>
           </div>
 
           <div class="d-lg-flex col-sm-auto justify-content-lg-end">
-            <a href="results.html">
-              <button class="btn btn-secondary btn-sm"> Generate </button>
+            <a href="#">
+              <button class="btn btn-secondary btn-sm" onclick="showImg()"> Generate </button>
             </a>
           </div>
+
         </div>
       </div>
     </nav>
@@ -147,11 +167,11 @@
         <span class="text-muted" id="inline-text"> Suggested prompt: &nbsp
         </span>
         <span class="font-weight-bold" id="promptText"></span>
-        <!-- <span class="font-weight-bold">in</span> -->
         <span class="font-weight-bold" id="colorText"></span>
         <span class="font-weight-bold" id="finishText"></span>
         <span class="font-weight-bold" id="materialText"></span>
         <span class="font-weight-bold" id="renderText"></span>
+        <span class="font-weight-bold" id="fullText"> Full Text</span>
     </div>
 
     <div class="row container mx-2" id="materialStuff">

@@ -1,3 +1,5 @@
+var components = 0
+
 function getDeleteTag() {
   return document.getElementsByClassName('deleteTag');
 }
@@ -6,7 +8,7 @@ function replyDeleteTag(clicked_id) {
   document.getElementById(clicked_id).remove();
 }
 
-function delSvgToLi(clicked_id) {
+function delSvgToLi(clicked_id) {  // 这个需要改，因为delSvg顺序开始编号了
   svg = document.getElementById(clicked_id);
   svg.parentElement.parentElement.remove();
   console.log(clicked_id)
@@ -35,33 +37,63 @@ function delSvgToLi(clicked_id) {
   }
 }
 
-function addTag(num) {
-  tagList = document.getElementById("tagList");
-  if (num == 0) {
-    str = "color"
-    oc = "addColor()"
-  } else if (num == 1) {
-    str = "material"
-    oc = "addMaterial()"
-  } else if (num == 2) {
-    str = "finish"
-    oc = "addFinish()"
-  } else {
-    str = "rendering"
-    oc = "addRender()" //onclick command，显示下方的内容
-  }
-  li =
-  //这是每按下便加一个list item,并显示出来
+function removeAll() {
+
+  console.log("removeAll");
+  document.getElementById("colorText").innerHTML = "";
+  document.getElementById("colorStuff").innerHTML= "";
+
+  document.getElementById("finishText").innerHTML = "";
+  document.getElementById("finishStuff").innerHTML = "";
+
+  document.getElementById("materialText").innerHTML = "";
+  document.getElementById("materialStuff").innerHTML= "";
+
+  document.getElementById("renderText").innerHTML = "";
+  document.getElementById("renderStuff").innerHTML = "";
+
+  // 编号变多，需要改
+
+  document.getElementById("deleteTag#0").innerHTML = "";
+  document.getElementById("deleteTag#1").innerHTML = "";
+  document.getElementById("deleteTag#2").innerHTML = "";
+  document.getElementById("deleteTag#3").innerHTML = "";
+
+  document.getElementById("textInput").innerHTML = "";
+
+  // co = document.getElementById("colorStuff")
+  // re = document.getElementById("renderStuff")
+
+  // ms.innerHTML = ""
+  // fi.innerHTML = ""
+  // re.innerHTML = ""
+  // co.innerHTML = ""
+  
+  // ele = document.getElementById("colorText")
+  // ele.innerHTML = ""
+  // ele = document.getElementById("materialText")
+  // ele.innerHTML = ""
+  // ele = document.getElementById("finishText")
+  // ele.innerHTML = ""
+  // ele = document.getElementById("renderText")
+  // ele.innerHTML = ""
+}
+
+function addStyle(){
+  components ++;
+  str = "rendering"
+  oc = "addRender()" 
+  i = components
+  li = 
   `
-    <li class="nav-item deleteTag" id="deleteTag#${num}">
+    <li class="nav-item deleteTag" id="deleteTag#${i}">
       <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
-        <img class="rounded-circle me-1" id="${num}_thumbnail" width="18" height="18" src="img/default_${str}.png" alt="">
-        <div onclick="${oc}" id="tag#${num}">
+        <img class="rounded-circle me-1" id="${i}_thumbnail" width="18" height="18" src="img/default_${str}.png" alt="">
+        <div onclick="${oc}" id="tag#${i}">
           ${str}
         </div>
-        <span class="vr mx-2">
-        </span>
-        <svg class="bi" width="12" height="12" id="delSvg#${num}" onclick="delSvgToLi(this.id)">
+        &nbsp&nbsp
+        <svg class="bi" width="12" height="12" id="delSvg#3" onclick="delSvgToLi(this.id)">
           <use xlink:href="#x-circle-fill" />
         </svg>
       </span>
@@ -70,7 +102,65 @@ function addTag(num) {
   tagList.insertAdjacentHTML('beforeend', li);
 }
 
-function changeText(index, text) { 
+function addTag() {
+  tagStart = components;
+  components += 3;
+  tagEnd = components;
+  for(var i = tagStart; i < tagEnd; i++){
+    if (i % 3 == 0) {
+     str = "color"
+     oc = "addColor()"
+    }
+    else if (i % 3 == 1) {
+    str = "finish"
+    oc = "addFinish()"
+    }
+    else if (i % 3 == 2) {
+      str = "material"
+      oc = "addMaterial()"
+    }
+     li =
+  //这是每按下便加一个list item,并显示出来
+  `
+    <li class="nav-item deleteTag" id="deleteTag#${i}"> 
+      <span class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-light-subtle border border-dark-subtle rounded">
+        <img class="rounded-circle me-1" id="${i}_thumbnail" width="18" height="18" src="img/default_${str}.png" alt="">
+        <div onclick="${oc}" id="tag#${i}"> 
+          ${str}
+        </div>
+        &nbsp&nbsp
+        <svg class="bi" width="12" height="12" id="delSvg#${i}" onclick="delSvgToLi(this.id)">
+          <use xlink:href="#x-circle-fill" />
+        </svg>
+      </span>
+    </li>
+    `
+  tagList.insertAdjacentHTML('beforeend', li);
+
+    } 
+    console.log(components);
+  }
+
+  
+
+function addInput(text) {
+  li =
+  //这是每按下便加一个list item,并显示出来
+  `
+  <div class="xs-2 col-sm-1" id="textInput">
+    <form role="search">
+      <input id="objName" value="${text}" class="form-control" placeholder=${text}>
+    </form>
+  </div>
+    `
+  tagList.insertAdjacentHTML('beforeend', li);
+}
+
+  // 这个feature我写不明白... 
+  // 我重新写了一个getFullText 的功能去cancatenate所有的文字，但是有点问题
+  // 这整个function估计都要重新写
+
+function changeText(index, text) {
   id1 = `tag#${index}`
   text1 = text
   if (index == 0) {
@@ -84,12 +174,26 @@ function changeText(index, text) {
     text = text 
   } else {
     id = "renderText"
-    text =  text + "style"
+    text =  text + " style"
   }
-  ele = document.getElementById(id) //这些有什么用呢
-  ele.innerHTML = text
-  ele1 = document.getElementById(id1)
-  ele1.innerHTML = text1
+  // document.getElementById(id).innerHTML = text  // change the text itself
+  document.getElementById(id1).innerHTML = text1  // change the tag text
+
+  getFullText()
+  // 拼凑成一句话的function
+}
+
+function getFullText(){
+  wholeText = ""
+
+  for(var i = 0; i < components; i++){
+    ele = document.getElementById(`tag#${i}`) 
+    eleText = ele.innerText;
+    console.log(eleText)
+    wholeText = wholeText + " " + eleText
+    console.log(wholeText)
+  }
+  document.getElementById("fullText").innerHTML = wholeText
 }
 
 function changeThumbnail(index,name) {
@@ -103,7 +207,9 @@ function changeThumbnail(index,name) {
     category = "rendering"
   }
   document.getElementById("${index}_thumbnail").src = "img/${category}/${name}.png"
-  document.getElementById("1_thumbnail").src = "img/material/leather.png"
+  // document.getElementById("1_thumbnail").src = "img/material/leather.png"
+
+  // 这个function没能成功update缩略图，需要改
 }
 
 function addMaterial() {
@@ -116,7 +222,6 @@ function addMaterial() {
   re.innerHTML = ""
 
   str = `
-
 
 <div class="col-sm-2 mb-3">
 
@@ -132,7 +237,7 @@ function addMaterial() {
 
 <div class="card">
   <img src="img/material/wood.png" class="card-img" alt="img">
-  <div onclick="changeText(1,'wood')" class="card-img-overlay align-items-center d-flex justify-content-center ">
+  <div onclick="changeText(1,'wood')" class="card-img-overlay align-items-center d-flex justify-content-center">
     <p class="card-text text-center">Wood</p>
   </div>
 </div>
@@ -257,6 +362,16 @@ function addMaterial() {
   <img  src="img/material/ceramic.png" class="card-img" alt="img">
   <div onclick="changeText(1,'ceramic'); changeThumbnail(1,'ceramic')" class="card-img-overlay align-items-center d-flex justify-content-center">
     <p class="card-text text-center">Ceramic</p>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+<div class="card">
+  <img  src="img/material/liquid.png" class="card-img" alt="img">
+  <div onclick="changeText(1,'liquid'); changeThumbnail(1,'liquid')" class="card-img-overlay align-items-center d-flex justify-content-center">
+    <p class="card-text text-center">Liquid</p>
   </div>
 </div>
 </div>
@@ -440,97 +555,142 @@ function addRender() {
 
   str = `
 
-  <div class="col-sm-3 mb-3">
+  <div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/professional_picture.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'professional picture')" class="card-body">
-      <p class="card-text mb-0">professional picture</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
+    <img src="img/rendering/3d rendering.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'3d rendering')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text text-center">3D Rendering</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/digital_art.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'digital art')" class="card-body">
-      <p class="card-text mb-0">Digital Art</p>
-      <p class="card-text"><small class="text-muted">Professional hand drawing style
-        </small></p>
+    <img src="img/rendering/watercolor.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'watercolor')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Watercolor</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/drawn_sketch.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'drawn sketch')" class="card-body">
+    <img src="img/rendering/oil paint.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'oil paint')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Oil Paint</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/vector art.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'vector art')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Vector Art</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/drawn sketch.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'drawn sketch')" class="card-img-overlay align-items-center d-flex justify-content-center">
       <p class="card-text mb-0">Drawn Sketch</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
     <img src="img/rendering/photorealistic.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'photorealistic')" class="card-body">
-      <p class="card-text mb-0">Photorealistic</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
+    <div onclick="changeText(3,'photorealistic')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text text-center">Photorealistic</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/3d_render.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'3D render')" class="card-body">
-      <p class="card-text mb-0">3D Render</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
+    <img src="img/rendering/digital art.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'digital art')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Digital Art</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/4k.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'4k')" class="card-body">
-      <p class="card-text mb-0">4k</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
+    <img src="img/rendering/patent drawing.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'patent drawing')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Patent Drawing</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/8k.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'8k')" class="card-body">
-      <p class="card-text mb-0">8k</p>
-      <p class="card-text"><small class="text-muted">Professional hand drawn style</small></p>
+    <img src="img/rendering/cinematic.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'cinematic')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Cinematic</p>
     </div>
   </div>
 </div>
 
-<div class="col-sm-3 mb-3">
+<div class="col-sm-2 mb-3">
 
   <div class="card">
-    <img src="img/rendering/pen_and_ink.png" class="card-img" alt="img">
-    <div onclick="changeText(3,'pen and ink')" class="card-body">
-      <p class="card-text mb-0">Pen and Ink</p>
-      <p class="card-text"><small class="text-muted">Professional picture will render your design in a real
-          way</small></p>
+    <img src="img/rendering/anmie.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'anmie')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Anmie</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/isometric 3d.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'isometric 3d')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Isometric 3d</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/ikea manual.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'ikea manual')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Ikea Manual</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/cutaway.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'cutaway')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Cutaway</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-2 mb-3">
+
+  <div class="card">
+    <img src="img/rendering/lowpoly.png" class="card-img" alt="img">
+    <div onclick="changeText(3,'lowpoly')" class="card-img-overlay align-items-center d-flex justify-content-center">
+      <p class="card-text mb-0">Lowpoly</p>
     </div>
   </div>
 </div>
@@ -551,8 +711,6 @@ function addColor() {
   ms.innerHTML = ""
 
   str = `
-
-
 
 <div class="col-sm-1 p-0 m-2">
 
@@ -802,8 +960,6 @@ function addColor() {
   </div>
 </div>
 
-
-
 <div class="col-sm-1 m-2 p-0">
 
   <div class="card">
@@ -830,3 +986,50 @@ function addColor() {
 
 }
 
+
+function showImg() {
+  ms = document.getElementById("materialStuff");
+  fi = document.getElementById("finishStuff")
+  co = document.getElementById("colorStuff")
+  re = document.getElementById("renderStuff")
+  fi.innerHTML = ""
+  co.innerHTML = ""
+  re.innerHTML = ""
+  ms.innerHTML = ""
+
+  str = `
+<div class="row container mx-2">
+  <div class="col-sm-3 mb-3">
+
+  <div class="card">
+    <img src="img/results/result1.png" class="card-img" alt="img">
+  </div>
+</div>
+
+<div class="col-sm-3 mb-3">
+
+  <div class="card">
+    <img src="img/results/result2.png" class="card-img" alt="img">
+  </div>
+</div>
+
+<div class="col-sm-3 mb-3">
+
+  <div class="card">
+    <img src="img/results/result3.png" class="card-img" alt="img">
+  </div>
+</div>
+
+<div class="col-sm-3 mb-3">
+
+  <div class="card">
+    <img src="img/results/result4.png" class="card-img" alt="img">
+  </div>
+</div>
+</div>
+
+  `
+  // ms.insertAdjacentHTML('afterbegin', str);
+  re.innerHTML = str
+
+}
