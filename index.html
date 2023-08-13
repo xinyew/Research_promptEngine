@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.112.5">
-  <title>User Testing</title>
+  <title>Prompt Engineering</title>
   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/badges/"> -->
   <link href="./bootstrap-5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="./index.css" rel="stylesheet">
@@ -99,70 +99,106 @@
       <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-            <img class="me-3" height="20" src="img/logo.png" alt="logo">
-
+            <img class="me-3" height="30" src="img/logo.png" alt="logo">
           </a>
 
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">History</a></li>
-            <li><a href="#" class="nav-link px-2 link-secondary">Collection</a></li>
+            <li class="nav-link px-3 link-secondary">Text-to-image Generation</li>
+            <!-- <li><a href="#" class="nav-link px-3 link-secondary">Collection</a></li> -->
           </ul>
+
+
+
         </div>
       </div>
     </header>
   </div>
 
+  <div class="container-fluid px-5" id="timer">
+    <div class=" d-lg-flex col-sm py-3 justify-content-center">
+      <a href="#">
+        <button class="btn btn-secondary btn-bg" onclick="confirmFinish()"> Finish Task </button>
+      </a>
+    </div>
 
-  <div class="container-fluid p-0 my-5 py-5 px-5">
+  </div>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
+  <!-- flex-column -->
+  <div class="container-fluid p-0 my-2 py-4 px-5">
 
-      <div class="container-fluid" id="inputContainer">
-
-        <!-- <div class="mx-2 col-sm-2">
-          <form role="search">
-            <input id="objName" class="form-control" type="search" placeholder="Object Name" aria-label="A watch">
-          </form>
-        </div> -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+      <div class="container-fluid " id="inputContainer">
 
         <div class="nav-item dropdown mx-2">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" onclick="addInput('A watch'); addTag() 
-                addInput('with straps in'); addTag(); addStyle();">
+            <li><a class="dropdown-item" onclick="removeAll(); addInput('A watch'); addTag() 
+                addInput('straps'); addTag(); addStyle();">
                 Watch</a>
             </li>
-            <li><a class="dropdown-item" onclick="addInput('A chair'),addTag(), 
-                addInput('with back in'),addTag(),addStyle()">
-                Chair</a>
-            <li><a class="dropdown-item" onclick="removeAll()">Remove</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('An office chair'),
+                createUl('back'),createUl('legs'),addStyle()">
+                Office Chair</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('An electronic toothbrush'), 
+                createUl('handle'),addStyle()">
+                Electronic Toothbrush</a>
+            <li><a class="dropdown-item" onclick="removeAll(),createUl('A backpack'),
+              createUl('straps'),addStyle()">
+                Backpack</a>
+              <div class="dropdown-divider"></div>
+            <li><a class="dropdown-item" onclick="removeAll()">Clear</a>
             </li>
           </ul>
         </div>
 
-        <div class=" collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="tagList">
+        <!-- flex-column: have several row effect -->
+
+        <div class="collapse navbar-collapse flex-column align-content-start" id="navbarCollapse">
+
+          <ul class="navbar-nav" id="tagList0">
+          </ul>
+          <ul class="navbar-nav" id="tagList1">
+          </ul>
+          <ul class="navbar-nav" id="tagList2">
+          </ul>
+          <ul class="navbar-nav" id="tagList3">
+          </ul>
+          <ul class="navbar-nav" id="tagList4">
+          </ul>
+          <ul class="navbar-nav" id="tagList5">
+          </ul>
+          <ul class="navbar-nav" id="tagList6">
+          </ul>
+          <ul class="navbar-nav" id="tagList7">
+          </ul>
+          <ul class="navbar-nav" id="tagList8">
+          </ul>
+          <ul class="navbar-nav" id="tagList9">
+          </ul>
+          <ul class="navbar-nav" id="tagList10">
           </ul>
 
-          <div class="nav-item dropdown mx-4">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Options</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" onclick="addTag()">Add
-                  Element</a>
-              </li>
-              <li><a class="dropdown-item" onclick="addStyle()">Image Style</a></li>
-            </ul>
-          </div>
-
-          <div class="d-lg-flex col-sm-auto justify-content-lg-end">
-            <a href="#">
-              <button class="btn btn-secondary btn-sm" onclick="showImg()"> Generate </button>
-            </a>
-          </div>
-
         </div>
+
+        <div class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Customize</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" onclick="createUl('element name')">Add Component</a></li>
+            <!-- <li><a class="dropdown-item" onclick="addInput('')">Add Input Box</a></li> -->
+            <li><a class="dropdown-item" onclick="addStyle()"> Add Image Style</a></li>
+          </ul>
+        </div>
+
+        <div class=" d-lg-flex col-sm-auto justify-content-lg-end" id="generateButton">
+          <a href="#">
+            <button class="btn btn-secondary btn-sm" onclick="checkAllSelected()"> Generate </button>
+          </a>
+        </div>
+
       </div>
     </nav>
+
+
 
     <div class="container-fluid mb-3">
       <id="inline-text">
@@ -173,7 +209,7 @@
         <span class="font-weight-bold" id="finishText"></span>
         <span class="font-weight-bold" id="materialText"></span>
         <span class="font-weight-bold" id="renderText"></span>
-        <span class="font-weight-bold" id="fullText"> Full Text</span>
+        <span class="font-weight-bold" id="fullText"></span>
     </div>
 
     <div class="row container mx-2" id="materialStuff">
