@@ -335,7 +335,6 @@ function getFullText() {
       part = `<span class = "wholeText text-secondary"> ${eleText} </span>`
     } else {
       eleText = ele.innerText;
-      console.log(eleText)
       if (renderList.includes(eleText)) {
         eleText = eleText + " style"
         part = `<span class = "wholeText"> [${eleText}] </span> .`

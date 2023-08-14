@@ -19,6 +19,7 @@ from promptEngine import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('photo/<int:id>', views.get_photo, name='photo'),
     path("", views.promptView),
-    path("generate/", views.generate_DallE, name='ajax-generate')
+    path("generate/", views.generate_DallE, name='ajax-generate'),
 ]

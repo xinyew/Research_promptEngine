@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.core.files.base import ContentFile
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
+from django.contrib.auth.decorators import login_required
 
 
 import requests
@@ -42,7 +45,7 @@ def generate_DallE(request):
 
 def save_generated_images(request: HttpRequest, image_urls):
     group = []
-    names = []
+    ids = []
     for image_url in image_urls:
         try:
             image_response = requests.get(image_url, timeout=10)
@@ -56,11 +59,12 @@ def save_generated_images(request: HttpRequest, image_urls):
             img.file.save(
                 # name=urlparse(image_url).path.rsplit('/', 1)[-1],
                 name=index+'.png',
-                content=ContentFile(image_response.content)
+                content=ContentFile(image_response.content),
             )  # also saves img
             group.append(img)
-            names.append(index+'.png')
-    return get_list_json_dumps_serializer(names)
+            ids.append(img.id)
+    print(ids)
+    return get_list_json_dumps_serializer(ids)
 
 
 def get_list_json_dumps_serializer(group):
@@ -71,10 +75,18 @@ def get_list_json_dumps_serializer(group):
     response_data = []
     for item in group:
         my_item = {
-            'img_path': 'images/' + item
+            'id': item
         }
         response_data.append(my_item)
 
     response_json = json.dumps(response_data)
 
     return HttpResponse(response_json, content_type='application/json')
+
+
+def get_photo(request, id):
+    item = get_object_or_404(UploadedImage, id=id)
+    if not item.file:
+        raise Http404
+
+    return HttpResponse(item.file, content_type=item.content_type)

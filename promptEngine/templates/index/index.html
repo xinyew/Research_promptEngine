@@ -228,9 +228,34 @@
   <script src="{% static 'promptEngine/bootstrap-5.3.0/dist/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
   <script>
     const addItemURL = "{% url 'ajax-generate' %}"
+
+    function updateList(items) {
+      ms = document.getElementById("materialStuff");
+      fi = document.getElementById("finishStuff")
+      co = document.getElementById("colorStuff")
+      re = document.getElementById("renderStuff")
+      fi.innerHTML = ""
+      co.innerHTML = ""
+      re.innerHTML = ""
+      ms.innerHTML = ""
+
+      str = `<div class="row container mx-2" id = "displayImg">`
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i]
+        let ele = `
+        <div class="col-sm-3 mb-3">
+            <div class="card">
+                <img src="{% url 'photo' 1234 %}" class="card-img" alt="img">
+            </div>
+        </div>
+        `
+        ele = ele.replace('1234', item.id)
+        str += ele
+      }
+      str += `</div>`
+      re.innerHTML = str
+    }
   </script>
-
-
 </body>
 
 </html>
