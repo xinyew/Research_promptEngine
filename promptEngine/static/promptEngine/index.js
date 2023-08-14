@@ -34,14 +34,14 @@ function delSvgToLi(clicked_id) {
 }
 
 // only check tag list when delete element from the tag list
-function checkTagListNull(){
+function checkTagListNull() {
   // check if deleteTag is inside the tagList,
   // if not, empty the whole tagList
   for (var i = 0; i < 10; i++) {
     id = `tagList${i}`
     elem = document.getElementById(id)
     let numb = elem.getElementsByClassName("deleteTag").length;
-    if (numb == 0){
+    if (numb == 0) {
       console.log("no delete tag")
       elem.innerHTML = ""
     }
@@ -52,15 +52,15 @@ function checkTagListNull(){
 function addStyle() {
   str = "rendering"
   fakeComponents = 100
-  oc = `addColor(${fakeComponents}, 3)` 
+  oc = `addColor(${fakeComponents}, 3)`
   i = fakeComponents
   var element = document.getElementById('tag#100');
   if (element == null) {
     li =
-    `
+      `
       <li class="nav-item deleteTag">
         <span class="badge d-flex align-items-center p-1 pe-2 text-body-tertiary bg-light-subtle border border-dark-subtle rounded" id="deleteTag#${i}">
-          <img class="rounded-circle me-1" id="thumbnail#${i}" width="18" height="18" src="img/default_${str}.png" alt="">
+          <img class="rounded-circle me-1" id="thumbnail#${i}" width="18" height="18" src="/static/promptEngine/img/default_${str}.png" alt="">
           <div onclick="${oc}; highlightCard(${i})" id="tag#${i}" class="component">
           rendering
           </div>
@@ -72,10 +72,10 @@ function addStyle() {
       </li>
     `
 
-  tagList10.insertAdjacentHTML('beforeend', li);
-  getFullText()
+    tagList10.insertAdjacentHTML('beforeend', li);
+    getFullText()
   }
-  else{
+  else {
     alert("You may only use select one image style");
   }
 
@@ -90,7 +90,7 @@ function addTag() {
       oc = `addColor(${components}, 0)`
       placeholder = "ivory"
     }
-    else if (i % 3 == 1) { 
+    else if (i % 3 == 1) {
       str = "finish"
       oc = `addColor(${components}, 2)`
       placeholder = "high-gloss"
@@ -105,7 +105,7 @@ function addTag() {
       `
       <li class="nav-item deleteTag collapse navbar-collapse" > 
         <span class="badge d-flex align-items-center text-body-tertiary bg-light-subtle border border-dark-subtle rounded" id="deleteTag#${components}">
-          <img class="rounded-circle me-1" id="thumbnail#${components}" width="18" height="18" src="img/default_${str}.png" alt="">
+          <img class="rounded-circle me-1" id="thumbnail#${components}" width="18" height="18" src="/static/promptEngine/img/default_${str}.png" alt="">
           <div onclick="${oc}; highlightCard(${components})" id="tag#${components}" class= "component"> 
             ${placeholder}
           </div>
@@ -116,21 +116,21 @@ function addTag() {
         </span>
       </li>
     `
-    tagListNum = Math.floor(components/4)
+    tagListNum = Math.floor(components / 4)
     id = `tagList${tagListNum}`
-    
+
     elem = document.getElementById(id)
     elem.insertAdjacentHTML('beforeend', li);
 
     components += 1
-    
+
   }
   // nextTagListNum = tagListNum + 1
   // nextId = `tagList${nextTagListNum}`
   // check whether they still have elements after or not
-  
-  comma = 
-  `
+
+  comma =
+    `
     <p class="component px-1 initialComma"> , </p>
   `
   elem.insertAdjacentHTML('beforeend', comma);
@@ -138,18 +138,18 @@ function addTag() {
 
 }
 
-function prevCommaToWith(){
+function prevCommaToWith() {
 
-    const collection = document.getElementsByClassName("initialComma");
-    for (let i = 0; i < collection.length; i++) {
-      if (!(i == (collection.length -1 ))){
-        collection[i].innerHTML = "with"
-      }else{
-        collection[i].innerHTML = ","
-      }      
+  const collection = document.getElementsByClassName("initialComma");
+  for (let i = 0; i < collection.length; i++) {
+    if (!(i == (collection.length - 1))) {
+      collection[i].innerHTML = "with"
+    } else {
+      collection[i].innerHTML = ","
     }
-    console.log("changedLastCommaToWith")
-    getFullText()
+  }
+  console.log("changedLastCommaToWith")
+  getFullText()
 
 }
 
@@ -157,7 +157,7 @@ function prevCommaToWith(){
 
 
 
-function highlightCard(tagId){
+function highlightCard(tagId) {
 
   tagIdx = parseInt(tagId)
   console.log(tagIdx)
@@ -167,11 +167,11 @@ function highlightCard(tagId){
 
   const collection = document.getElementsByClassName("badge");
   for (let i = 0; i < collection.length; i++) {
-  // collection[i].classList.remove("selectedTag");
-  collection[i].classList.remove("bg-dark-subtle");
-  collection[i].classList.add("bg-secondary");
-  collection[i].classList.remove("border-secondary");
-  collection[i].classList.add("border-dark-subtle");
+    // collection[i].classList.remove("selectedTag");
+    collection[i].classList.remove("bg-dark-subtle");
+    collection[i].classList.add("bg-secondary");
+    collection[i].classList.remove("border-secondary");
+    collection[i].classList.add("border-dark-subtle");
   } //firstly, remove all selectedTag class from the full list
 
   // document.getElementById(cardId).classList.toggle("selectedTag");
@@ -180,7 +180,7 @@ function highlightCard(tagId){
 
   document.getElementById(cardId).classList.remove("border-dark-subtle");
   document.getElementById(cardId).classList.add("border-secondary");
-  
+
   document.getElementById(cardId).classList.remove("text-body-tertiary");
   document.getElementById(cardId).classList.add("text-body-emphasis");
 
@@ -195,19 +195,19 @@ function highlightCard(tagId){
 
 // }
 
-function createUl(text){
-  tagListNum = Math.floor(components/4)
-  if (tagListNum >= 10){
+function createUl(text) {
+  tagListNum = Math.floor(components / 4)
+  if (tagListNum >= 10) {
     alert("You may only have 10 elements at the maximum.");
   }
-  else{
+  else {
     addInput(text);
     addTag();
   }
 }
 
 // components -> global variable
-function addInput(text) { 
+function addInput(text) {
   li =
     `
     <li class="xs-2 col-sm-4 px-1">
@@ -219,19 +219,19 @@ function addInput(text) {
     &nbsp
    <p class="component px-1 in"> in</p>
   `
-  tagListNum = Math.floor(components/4)
+  tagListNum = Math.floor(components / 4)
 
-    id = `tagList${tagListNum}`
+  id = `tagList${tagListNum}`
 
-    elem = document.getElementById(id)
-    elem.insertAdjacentHTML('beforeend', li);
-    
-    li = document.getElementById(`tag#${components}`)
-    const inputHandler = function (e) { // TODO: know what it means
-      getFullText()
-    }
-    li.addEventListener('input', inputHandler)
-    components += 1
+  elem = document.getElementById(id)
+  elem.insertAdjacentHTML('beforeend', li);
+
+  li = document.getElementById(`tag#${components}`)
+  const inputHandler = function (e) { // TODO: know what it means
+    getFullText()
+  }
+  li.addEventListener('input', inputHandler)
+  components += 1
 
 }
 
@@ -271,11 +271,11 @@ function changeThumbnail(thisId, cfmIdx, text) { //tagIdx is the component
   } else {
     category = "render"
   }
-  img.src = `img/${category}/${text}.png`
+  img.src = `/static/promptEngine/img/${category}/${text}.png`
 
   const collection = document.getElementsByClassName("selectedComponent");
   for (let i = 0; i < collection.length; i++) {
-  collection[i].classList.toggle("selectedComponent");
+    collection[i].classList.toggle("selectedComponent");
   }
 
   cardIdx = parseInt(thisId.split("#")[2])
@@ -298,7 +298,7 @@ const finishList = ['gloss', 'high gloss', 'matt', 'brushed', 'polished', 'satin
 const renderList = ['3d rendering', 'watercolor', 'oil paint', 'vector art', 'drawn sketch',
   'photorealistic', 'digital art', 'patent drawing', 'cinematic', 'anmie', 'isometric 3d', 'ikea manual',
   'cutaway', 'lowpoly']
-const prepList = [ ',' , 'with', 'in', '&nbsp;in']
+const prepList = [',', 'with', 'in', '&nbsp;in']
 
 const CMFList = colorList.concat(materialList, finishList);
 
@@ -317,43 +317,43 @@ function getFullText() {
       part = `<span class = "wholeText text-secondary"> ${eleText} </span>`
     } else {
       eleText = ele.innerText;
-      if (renderList.includes(eleText)){
+      if (renderList.includes(eleText)) {
         eleText = eleText + " style"
         part = `<span class = "wholeText"> [${eleText}] </span> .`
 
-        if(ele.parentNode.classList.contains("bg-dark-subtle")){
+        if (ele.parentNode.classList.contains("bg-dark-subtle")) {
           fullText.classList.remove("fw-bolder")
           part = `<span class = "wholeText fw-bolder"> [${eleText}] </span> . `
-          
+
         }
-        
-      }else if(CMFList.includes(eleText)){
+
+      } else if (CMFList.includes(eleText)) {
         part = `<span class = "wholeText text-dark"> [${eleText}] </span> `
-        if(ele.parentNode.classList.contains("bg-dark-subtle")){
+        if (ele.parentNode.classList.contains("bg-dark-subtle")) {
           fullText.classList.remove("fw-bolder")
           part = `<span class = "wholeText fw-bolder"> [${eleText}] </span> `
-          
+
         }
 
-      }else if(prepList.includes(eleText)){
+      } else if (prepList.includes(eleText)) {
         part = `&nbsp<span class = "wholeText text-secondary"> ${eleText} </span> `
-      }else{
+      } else {
         part = `<span class = "wholeText text-secondary">[]</span> `
       }
-      
+
     }
     wholeText = wholeText + part
-    }
-    document.getElementById("fullText").innerHTML = wholeText  
-  } 
+  }
+  document.getElementById("fullText").innerHTML = wholeText
+}
 
-function addColor(tagIdx, cfmIdx) {  
+function addColor(tagIdx, cfmIdx) {
   // show the card at the bottom of the documents
   ms = document.getElementById("materialStuff");
   fi = document.getElementById("finishStuff") // why put in this label?
   co = document.getElementById("colorStuff")
   re = document.getElementById("renderStuff")
-  fi.innerHTML = "" 
+  fi.innerHTML = ""
   co.innerHTML = ""
   re.innerHTML = ""
   ms.innerHTML = ""
@@ -369,7 +369,7 @@ function addColor(tagIdx, cfmIdx) {
   } else if (cfmIdx == 2) {
     pane = "finish"
     list = finishList
-  } else if (cfmIdx == 3){
+  } else if (cfmIdx == 3) {
     pane = "render"
     list = renderList
   }
@@ -377,14 +377,14 @@ function addColor(tagIdx, cfmIdx) {
   str = ""
   for (let i = 0; i < list.length; i++) {
     initialCap = list[i].charAt(0).toUpperCase() + list[i].slice(1)
-    if (oneColStyle){
+    if (oneColStyle) {
 
-    // tagIdx:  cmfIdx: change 
-    s = `
+      // tagIdx:  cmfIdx: change 
+      s = `
     
     <div class="col-sm-1 p-0 m-2">
       <div class="card">
-        <img src="img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
+        <img src="/static/promptEngine/img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
         <div id="changeText#${tagIdx}Card#${i}" 
              onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
              class="card-img-overlay align-items-center d-flex justify-content-center">
@@ -393,11 +393,11 @@ function addColor(tagIdx, cfmIdx) {
       </div>
     </div>
     `}
-    else{
-    s = `
+    else {
+      s = `
     <div class="col-sm-2 p-0 m-2">
       <div class="card">
-        <img src="img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
+        <img src="/static/promptEngine/img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
         <div id="changeText#${tagIdx}Card#${i}" 
              onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
              class="card-img-overlay align-items-center d-flex justify-content-center">
@@ -412,7 +412,7 @@ function addColor(tagIdx, cfmIdx) {
 
   // if (oneColStyle){
   // s1 = `
-    
+
   //   <div class="col-sm-1 p-0 m-2">
   //     <div class="card">
   //       <img src="img/color/aqua.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
@@ -442,15 +442,15 @@ function addColor(tagIdx, cfmIdx) {
   fi.innerHTML = str
 }
 
-function checkAllSelected(){
+function checkAllSelected() {
   let numb1 = document.getElementsByClassName("component").length;
   let numb2 = document.getElementsByClassName("body-text-emphasis").length;
-    if(numb1 == numb2) {
-      generateImg();
-    }
-    else{
-      confirm("Not all elements are selected. Do you wish to proceed?");
-    }
+  if (numb1 == numb2) {
+    generateImg();
+  }
+  else {
+    confirm("Not all elements are selected. Do you wish to proceed?");
+  }
 }
 
 function generateImg() {
@@ -469,38 +469,38 @@ function generateImg() {
   <div class="col-sm-3 mb-3">
 
   <div class="card">
-    <img src="img/results/result1.png" class="card-img" alt="img">
+    <img src="/static/promptEngine/img/results/result1.png" class="card-img" alt="img">
   </div>
 </div>
 
 <div class="col-sm-3 mb-3">
 
   <div class="card">
-    <img src="img/results/result2.png" class="card-img" alt="img">
+    <img src="/static/promptEngine/img/results/result2.png" class="card-img" alt="img">
   </div>
 </div>
 
 <div class="col-sm-3 mb-3">
 
   <div class="card">
-    <img src="img/results/result3.png" class="card-img" alt="img">
+    <img src="/static/promptEngine/img/results/result3.png" class="card-img" alt="img">
   </div>
 </div>
 
 <div class="col-sm-3 mb-3">
 
   <div class="card">
-    <img src="img/results/result4.png" class="card-img" alt="img">
+    <img src="/static/promptEngine/img/results/result4.png" class="card-img" alt="img">
   </div>
 </div>
 </div>
 
   `
   re.innerHTML = str
-  
+
 }
 
-function confirmFinish(){
+function confirmFinish() {
   confirm("Finish this design task and leave the page");
 }
 
@@ -545,7 +545,7 @@ function removeAll() {
 
   `;
   const main = document.getElementById('navbarCollapse');
-  
+
   main.innerHTML = scriptHTML;
   // document.getElementById("navbarCollapse").innerHTML = ""
 
