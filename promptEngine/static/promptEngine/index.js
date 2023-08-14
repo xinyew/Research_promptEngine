@@ -372,6 +372,7 @@ function getFullText() {
     wholeText = wholeText + part
     finalPrompt += eleText
     finalPrompt += " "
+    document.getElementById("id_prompt_input_text").value = finalPrompt
   }
   document.getElementById("fullText").innerHTML = wholeText
   finalPrompt += "style"
@@ -459,7 +460,8 @@ function checkAllSelected() {
     generateImg();
   }
   else {
-    confirm("Not all elements are selected. Do you wish to proceed?");
+    // confirm("Not all elements are selected. Do you wish to proceed?");
+    alert("Not all elements are selected. Could not generate.");
   }
 }
 

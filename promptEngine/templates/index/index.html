@@ -190,9 +190,11 @@
         </div>
 
         <div class=" d-lg-flex col-sm-auto justify-content-lg-end" id="generateButton">
-          <a href="#">
-            <button class="btn btn-secondary btn-sm" onclick="checkAllSelected()"> Generate </button>
-          </a>
+          <form method="post" id="id_generate_form">
+            {% csrf_token %}
+            <input id="id_prompt_input_text" type="text" name="prompt_input" hidden />
+            <button class="btn btn-secondary btn-sm" type="submit" onclick="checkAllSelected()"> Generate </button>
+          </form>
         </div>
 
       </div>
