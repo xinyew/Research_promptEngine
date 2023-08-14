@@ -232,7 +232,6 @@ function addInput(text) {
   }
   li.addEventListener('input', inputHandler)
   components += 1
-
 }
 
 function changeText(tagIdx, cfmIdx, text) {
@@ -253,8 +252,27 @@ function changeText(tagIdx, cfmIdx, text) {
   getFullText()
 }
 
+function toggleCustomCard(thisId) {
+  tagIdx = parseInt(thisId.split("#")[1])
+  id = `input#${tagIdx}Card#100`
+  input = document.getElementById(id)
+  const inputHandler = function (e) { // TODO: know what it means
+    updateCustomCard(tagIdx)
+  }
+  input.addEventListener('input', inputHandler)
+}
+
+function updateCustomCard(tagIdx) {
+  inputId = `input#${tagIdx}Card#100`
+  tagId = `tag#${tagIdx}`
+  document.getElementById(tagId).innerText = document.getElementById(inputId).value
+  getFullText()
+}
+
 function changeThumbnail(thisId, cfmIdx, text) { //tagIdx is the component 
+  console.log(thisId)
   componentIdx = parseInt(thisId.split("#")[1])
+  cardIdx = parseInt(thisId.split("#")[2])
 
   id = `thumbnail#${componentIdx}`
   img = document.getElementById(id) // get the upper image, not the one clicking on
@@ -267,18 +285,20 @@ function changeThumbnail(thisId, cfmIdx, text) { //tagIdx is the component
   } else {
     category = "render"
   }
-  img.src = `/static/promptEngine/img/${category}/${text}.png`
+
+  if (cardIdx != 100) {
+    img.src = `/static/promptEngine/img/${category}/${text}.png`
+  } else {
+    img.src = '/static/promptEngine/img/color/white.png'
+  }
 
   const collection = document.getElementsByClassName("selectedComponent");
   for (let i = 0; i < collection.length; i++) {
     collection[i].classList.toggle("selectedComponent");
   }
 
-  cardIdx = parseInt(thisId.split("#")[2])
-  console.log(cardIdx)
-
   id = `card#${cardIdx}`
-  console.log(id)
+
   document.getElementById(id).classList.toggle("selectedComponent");
 
 }
@@ -314,6 +334,7 @@ function getFullText() {
       part = `<span class = "wholeText text-secondary"> ${eleText} </span>`
     } else {
       eleText = ele.innerText;
+      console.log(eleText)
       if (renderList.includes(eleText)) {
         eleText = eleText + " style"
         part = `<span class = "wholeText"> [${eleText}] </span> .`
@@ -408,7 +429,7 @@ function addColor(tagIdx, cfmIdx) {
     `<div class="card">
       <img src="/static/promptEngine/img/color/white.png" id="card#100" class="card-img" alt="img" style = "height:150px">
       <div id="changeText#${tagIdx}Card#100" 
-          onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '')" 
+          onclick="toggleCustomCard(this.id); changeThumbnail(this.id, ${cfmIdx}, '')" 
           class="card-img-overlay align-items-center d-flex justify-content-center">
         <input id="input#${tagIdx}Card#100"  
         value="" 
