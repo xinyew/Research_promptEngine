@@ -5,6 +5,7 @@ from django.core.files.base import ContentFile
 
 import requests
 import os
+import json
 from urllib.parse import urlparse
 
 from .models import UploadedImage
@@ -18,9 +19,6 @@ def promptView(request):
         context = {}
         return render(request, 'index/index.html')
 
-    print(request.POST)
-    generate_DallE(request)
-
 
 def generate_DallE(request):
     import openai
@@ -28,7 +26,7 @@ def generate_DallE(request):
 
     try:
         response = openai.Image.create(
-            prompt=request.POST["prompt_input"],
+            prompt=request.POST["prompt"],
             # n=int(request.POST["num_input"]),
             n=4,
             # size=request.POST["size_input"],
@@ -43,8 +41,8 @@ def generate_DallE(request):
 
 
 def save_generated_images(request: HttpRequest, image_urls):
-    print('saving', image_urls)
     group = []
+    names = []
     for image_url in image_urls:
         try:
             image_response = requests.get(image_url, timeout=10)
@@ -52,13 +50,31 @@ def save_generated_images(request: HttpRequest, image_urls):
             pass
         else:
             img = UploadedImage(
-                prompt=request.POST["prompt_input"],
+                prompt=request.POST["prompt"],
             )
-            index = len(os.listdir('images/'))
+            index = str(len(os.listdir('images/'))).zfill(5)
             img.file.save(
                 # name=urlparse(image_url).path.rsplit('/', 1)[-1],
-                name=str(index)+'.png',
+                name=index+'.png',
                 content=ContentFile(image_response.content)
             )  # also saves img
             group.append(img)
-    return reversed(group)
+            names.append(index+'.png')
+    return get_list_json_dumps_serializer(names)
+
+
+def get_list_json_dumps_serializer(group):
+    # To make quiz11 easier, we permit reading the list without logging in. :-)
+    # if not request.user.id:
+    #     return _my_json_error_response("You must be logged in to do this operation", status=403)
+
+    response_data = []
+    for item in group:
+        my_item = {
+            'img_path': 'images/' + item
+        }
+        response_data.append(my_item)
+
+    response_json = json.dumps(response_data)
+
+    return HttpResponse(response_json, content_type='application/json')

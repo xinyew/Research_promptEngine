@@ -20,4 +20,5 @@ from promptEngine import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.promptView),
+    path("generate/", views.generate_DallE, name='ajax-generate')
 ]

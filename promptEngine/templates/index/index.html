@@ -15,6 +15,7 @@
   <link href="{% static 'promptEngine/index.css' %}" rel="stylesheet">
   <link href="{% static 'promptEngine/bootstrap-5.3.0/dist/css/bootstrap.min.css' %}" rel="stylesheet">
   <script src="{% static 'promptEngine/index.js' %}?v={% now 'U' %}" type="text/javascript"></script>
+  <script src="{% static 'promptEngine/ajax.js' %}?v={% now 'U' %}" type="text/javascript"></script>
 
 
 </head>
@@ -190,11 +191,8 @@
         </div>
 
         <div class=" d-lg-flex col-sm-auto justify-content-lg-end" id="generateButton">
-          <form method="post" id="id_generate_form">
-            {% csrf_token %}
-            <input id="id_prompt_input_text" type="text" name="prompt_input" hidden />
-            <button class="btn btn-secondary btn-sm" type="submit" onclick="checkAllSelected()"> Generate </button>
-          </form>
+          <input id="id_prompt_input_text" type="text" name="prompt_input" hidden />
+          <button class="btn btn-secondary btn-sm" onclick="generate()"> Generate </button>
         </div>
 
       </div>
@@ -228,6 +226,9 @@
   <!-- <script src="./bootstrap-5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
   <script src="{% static 'promptEngine/bootstrap-5.3.0/dist/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+  <script>
+    const addItemURL = "{% url 'ajax-generate' %}"
+  </script>
 
 
 </body>
