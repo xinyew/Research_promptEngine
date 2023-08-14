@@ -242,16 +242,12 @@ function changeText(tagIdx, cfmIdx, text) {
   // TODO: fix this prompt generation functionality
   if (cfmIdx == 0) {
     id = "colorText"
-    text = "in " + text
   } else if (cfmIdx == 1) {
     id = "materialText"
-    text = text
   } else if (cfmIdx == 2) {
     id = "finishText"
-    text = text
   } else {
     id = "renderText"
-    text = text + "style."
   }
   document.getElementById(id1).innerHTML = text1  // change the tag text
   getFullText()
@@ -303,6 +299,7 @@ const prepList = [',', 'with', 'in', '&nbsp;in']
 const CMFList = colorList.concat(materialList, finishList);
 
 
+let finalPrompt = ""
 function getFullText() {
   wholeText = ""
 
@@ -345,6 +342,10 @@ function getFullText() {
     wholeText = wholeText + part
   }
   document.getElementById("fullText").innerHTML = wholeText
+
+  wholeText.replace('[', '')
+  wholeText.replace(']', '')
+  finalPrompt = wholeText
 }
 
 function addColor(tagIdx, cfmIdx) {
@@ -405,13 +406,13 @@ function addColor(tagIdx, cfmIdx) {
   }
   s +=
     `<div class="card">
-      <img src="/static/promptEngine/img/color/white.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
+      <img src="/static/promptEngine/img/color/white.png" id="card#100" class="card-img" alt="img" style = "height:150px">
       <div id="changeText#${tagIdx}Card#100" 
-          onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
+          onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '')" 
           class="card-img-overlay align-items-center d-flex justify-content-center">
         <input id="input#${tagIdx}Card#100"  
         value="" 
-        class="form-control textInput component" 
+        class="form-control textInput" 
         >
       </div>
     </div>
