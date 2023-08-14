@@ -11,10 +11,10 @@
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.112.5">
   <title>Prompt Engineering</title>
-  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/badges/"> -->
-  <link href="./bootstrap-5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="./index.css" rel="stylesheet">
-  <script src="./index.js" type="text/javascript"></script>
+  {% load static %}
+  <link href="{% static 'promptEngine/bootstrap-5.3.0/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+  <script src="{% static 'promptEngine/index.js' %}?v={% now 'U' %}" type="text/javascript"></script>
 
 
 </head>
@@ -99,7 +99,7 @@
       <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-            <img class="me-3" height="30" src="img/logo.png" alt="logo">
+            <img class="me-3" height="30" src="{% static 'promptEngine/img/logo.png' %}" alt="logo">
           </a>
 
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
