@@ -322,13 +322,14 @@ const CMFList = colorList.concat(materialList, finishList);
 let finalPrompt = ""
 function getFullText() {
   wholeText = ""
-
+  finalPrompt = ""
   ll = document.getElementsByClassName("component")
 
   for (var i = 0; i < ll.length; i++) {
     ele = ll[i]
 
     let tagName = ele.tagName;
+    let eleText = ""
     if (tagName === "INPUT") {
       eleText = ele.value
       part = `<span class = "wholeText text-secondary"> ${eleText} </span>`
@@ -369,12 +370,11 @@ function getFullText() {
 
     }
     wholeText = wholeText + part
+    finalPrompt += eleText
+    finalPrompt += " "
   }
   document.getElementById("fullText").innerHTML = wholeText
-
-  wholeText.replace('[', '')
-  wholeText.replace(']', '')
-  finalPrompt = wholeText
+  finalPrompt += "style"
 }
 
 function addColor(tagIdx, cfmIdx) {
