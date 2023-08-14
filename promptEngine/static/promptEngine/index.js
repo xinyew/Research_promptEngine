@@ -265,7 +265,7 @@ function toggleCustomCard(thisId) {
 function updateCustomCard(tagIdx) {
   inputId = `input#${tagIdx}Card#100`
   tagId = `tag#${tagIdx}`
-  document.getElementById(tagId).innerText = document.getElementById(inputId).value
+  document.getElementById(tagId).innerText = document.getElementById(inputId).value + '.'
   getFullText()
 }
 
@@ -355,6 +355,14 @@ function getFullText() {
 
       } else if (prepList.includes(eleText)) {
         part = `&nbsp<span class = "wholeText text-secondary"> ${eleText} </span> `
+      } else if (eleText.endsWith('.')) {
+        eleText = eleText.replace('.', '')
+        part = `<span class = "wholeText text-dark"> [${eleText}] </span> `
+        if (ele.parentNode.classList.contains("bg-dark-subtle")) {
+          fullText.classList.remove("fw-bolder")
+          part = `<span class = "wholeText fw-bolder"> [${eleText}] </span> `
+
+        }
       } else {
         part = `<span class = "wholeText text-secondary">[]</span> `
       }
