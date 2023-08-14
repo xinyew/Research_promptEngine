@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 import requests
@@ -23,9 +24,15 @@ def promptView(request):
         return render(request, 'index/index.html')
 
 
+@csrf_exempt
 def generate_DallE(request):
     import openai
     import openai.error
+    secret = ''
+    with open('/home/ubuntu/Research_promptEngine/secret_openai', 'r') as f:
+        secret += f.read()[:-1]
+
+    openai.api_key = secret
 
     try:
         response = openai.Image.create(
@@ -55,15 +62,12 @@ def save_generated_images(request: HttpRequest, image_urls):
             img = UploadedImage(
                 prompt=request.POST["prompt"],
             )
-            index = str(len(os.listdir('images/'))).zfill(5)
             img.file.save(
-                # name=urlparse(image_url).path.rsplit('/', 1)[-1],
-                name=index+'.png',
+                name=urlparse(image_url).path.rsplit('/', 1)[-1],
                 content=ContentFile(image_response.content),
             )  # also saves img
             group.append(img)
             ids.append(img.id)
-    print(ids)
     return get_list_json_dumps_serializer(ids)
 
 

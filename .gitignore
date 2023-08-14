@@ -1,3 +1,4 @@
 images/
+secret*
 .DS_STORE
 __pycache__
