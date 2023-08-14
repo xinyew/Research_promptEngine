@@ -377,68 +377,48 @@ function addColor(tagIdx, cfmIdx) {
   str = ""
   for (let i = 0; i < list.length; i++) {
     initialCap = list[i].charAt(0).toUpperCase() + list[i].slice(1)
-    if (oneColStyle) {
 
-      // tagIdx:  cmfIdx: change 
-      s = `
-    
-    <div class="col-sm-1 p-0 m-2">
-      <div class="card">
+    s = ''
+    if (oneColStyle) {
+      s += '<div class="col-sm-1 p-0 m-2">'
+    } else {
+      s += '<div class="col-sm-2 p-0 m-2">'
+    }
+    s +=
+      `<div class="card">
         <img src="/static/promptEngine/img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
         <div id="changeText#${tagIdx}Card#${i}" 
-             onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
-             class="card-img-overlay align-items-center d-flex justify-content-center">
-          <p class="card-text text-center">${initialCap}</p>
-        </div>
-      </div>
-    </div>
-    `}
-    else {
-      s = `
-    <div class="col-sm-2 p-0 m-2">
-      <div class="card">
-        <img src="/static/promptEngine/img/${pane}/${list[i]}.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
-        <div id="changeText#${tagIdx}Card#${i}" 
-             onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
-             class="card-img-overlay align-items-center d-flex justify-content-center">
+            onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
+            class="card-img-overlay align-items-center d-flex justify-content-center">
           <p class="card-text text-center">${initialCap}</p>
         </div>
       </div>
     </div>
     `
-    }
     str += s
   }
+  s = ''
+  if (oneColStyle) {
+    s += '<div class="col-sm-1 p-0 m-2">'
+  } else {
+    s += '<div class="col-sm-2 p-0 m-2">'
+  }
+  s +=
+    `<div class="card">
+      <img src="/static/promptEngine/img/color/white.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
+      <div id="changeText#${tagIdx}Card#100" 
+          onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
+          class="card-img-overlay align-items-center d-flex justify-content-center">
+        <input id="input#${tagIdx}Card#100"  
+        value="" 
+        class="form-control textInput component" 
+        >
+      </div>
+    </div>
+  </div>
+  `
+  str += s
 
-  // if (oneColStyle){
-  // s1 = `
-
-  //   <div class="col-sm-1 p-0 m-2">
-  //     <div class="card">
-  //       <img src="img/color/aqua.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
-  //       <div id="changeText#${tagIdx}Card#${i}" 
-  //            onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
-  //            class="card-img-overlay align-items-center d-flex justify-content-center">
-  //         <input class="card-text text-center"> </input>
-  //       </div>
-  //     </div>
-  //   </div>
-  //   `
-  // }else{
-  // s1 = `
-  //     <div class="col-sm-1 p-0 m-2">
-  //     <div class="card">
-  //       <img src="img/color/aqua.png" id="card#${i}" class="card-img" alt="img" style = "height:150px">
-  //       <div id="changeText#${tagIdx}Card#${i}" 
-  //            onclick="changeText(this.id, ${cfmIdx},'${list[i]}'); changeThumbnail(this.id, ${cfmIdx}, '${list[i]}')" 
-  //            class="card-img-overlay align-items-center d-flex justify-content-center">
-  //           <input class="card-text text-center"> </input>
-  //       </div>
-  //     </div>
-  //   </div>
-  //   `
-  // }
-  // str += s1
   fi.innerHTML = str
 }
 
