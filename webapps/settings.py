@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 p = os.path.join(os.getcwd(), 'secret_django')
+p = '/home/ubuntu/Research_promptEngine/secret_django'
 secret = ''
 with open(p, 'r') as f:
     secret += f.read()[:-1]
