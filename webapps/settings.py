@@ -32,7 +32,7 @@ SECRET_KEY = secret
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["54.90.80.56", "localhost", "127.0.0.1", ]
+ALLOWED_HOSTS = ["54.90.80.56", "localhost", "127.0.0.1", "54.161.1.46"]
 
 
 # Application definition
