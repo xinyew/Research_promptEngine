@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import platform
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-p = os.path.join(os.getcwd(), 'secret_django')
-p = '/home/ubuntu/Research_promptEngine/secret_django'
+
+if platform.platform() == 'Linux-5.15.0-1043-aws-x86_64-with-glibc2.29':
+    p = '/home/ubuntu/Research_promptEngine/secret_django'
+else:
+    p = os.path.join(os.getcwd(), 'secret_django')
+
 secret = ''
 with open(p, 'r') as f:
     secret += f.read()[:-1]
