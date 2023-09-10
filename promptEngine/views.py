@@ -28,7 +28,12 @@ def promptView(request):
 def generate_DallE(request):
     import openai
     import openai.error
-    p = os.path.join(os.getcwd(), 'secret_openai')
+    import platform
+
+    if platform.platform().startswith('Linux-5.15.0-'):
+        p = '/home/ubuntu/Research_promptEngine/secret_openai'
+    else:
+        p = os.path.join(os.getcwd(), 'secret_openai')
     secret = ''
     with open(p, 'r') as f:
         secret += f.read()[:-1]
