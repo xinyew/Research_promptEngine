@@ -12,6 +12,9 @@ function getCSRFToken() {
 
 function generate() {
     prompt = document.getElementById("id_prompt_input_text").value
+    prompt_to_save.push(prompt)
+    timestamp_to_save.push(timer)
+    clicks_to_save.push(0)
     button = document.getElementById('id_button')
     button.innerHTML = `<div class="spinner-border spinner-border-sm" role="status">
         <span class="sr-only"></span>

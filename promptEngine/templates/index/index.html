@@ -161,6 +161,7 @@
 
   <script src="{% static 'promptEngine/bootstrap-5.3.0/dist/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
   <script>
+  date_to_save = new Date()
   var timer = 0
   function add1Sec() {
     timer += 1
@@ -201,6 +202,7 @@
         </div>
         `
         ele = ele.replace('1234', item.id)
+        imagelist_to_save.push(item.id)
         str += ele
       }
       str += `</div>`
