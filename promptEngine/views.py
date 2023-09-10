@@ -68,8 +68,10 @@ def save_generated_images(request: HttpRequest, image_urls):
             img = UploadedImage(
                 prompt=request.POST["prompt"],
             )
+            img_num = len(UploadedImage.objects.all())
             img.file.save(
-                name=urlparse(image_url).path.rsplit('/', 1)[-1],
+                # name=urlparse(image_url).path.rsplit('/', 1)[-1],
+                name=str(img_num + 1) + '.png',                
                 content=ContentFile(image_response.content),
             )  # also saves img
             group.append(img)

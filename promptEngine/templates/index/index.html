@@ -291,6 +291,7 @@
         </div>
         `
         ele = ele.replace('1234', item.id)
+        imagelist_to_save.push(item.id)
         str += ele
       }
       str += `</div>`
@@ -299,6 +300,7 @@
   </script>
   <script>
     var timer = 0
+    date_to_save = new Date()
     function add1Sec() {
       timer += 1
       h = Math.floor(timer / 3600)

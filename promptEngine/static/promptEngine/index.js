@@ -1,6 +1,11 @@
 var components = 0 //keep track of how many components are there
 var tagRows = 0
 
+timestamp_to_save = []
+imagelist_to_save = []
+prompt_to_save = []
+clicks_to_save = []
+
 // the function to make the delete icon on tags work
 function delSvgToLi(clicked_id) {
   svg = document.getElementById(clicked_id); // find the svg 
