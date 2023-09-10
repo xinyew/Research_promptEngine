@@ -113,8 +113,8 @@
 
   <div class="container-fluid px-5" id="timer">
     <div class=" d-lg-flex col-sm py-3 justify-content-center">
-      <div class="py-2">
-        <p class="font-weight-bold">Time: 00:00:00 &nbsp&nbsp </p>
+      <div class="py-2 mx-4">
+        <p id="id_time" class="font-weight-bold">Time: 0:0:0 &nbsp&nbsp </p>
       </div>
       <a href="#">
         <button class="btn btn-secondary btn-bg" onclick="confirmFinish()"> Finish Task </button>
@@ -296,6 +296,18 @@
       str += `</div>`
       re.innerHTML = str
     }
+  </script>
+  <script>
+    var timer = 0
+    function add1Sec() {
+      timer += 1
+      h = Math.floor(timer / 3600)
+      m = Math.floor(timer / 60)
+      s = timer % 60
+      clock = document.getElementById('id_time')
+      clock.innerHTML = `Time: ${h}:${m}:${s}`
+    }
+    setInterval(add1Sec, 1000)
   </script>
 </body>
 
