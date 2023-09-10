@@ -184,7 +184,6 @@ function highlightCard(tagId) {
   document.getElementById(cardId).classList.remove("text-body-tertiary");
   document.getElementById(cardId).classList.add("text-body-emphasis");
 
-
 }
 
 // function selectedStyle(id) {

@@ -102,14 +102,10 @@
           <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img class="me-3" height="30" src="{% static 'promptEngine/img/logo.png' %}" alt="logo">
           </a>
-
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li class="nav-link px-3 link-secondary">Text-to-image Generation</li>
             <!-- <li><a href="#" class="nav-link px-3 link-secondary">Collection</a></li> -->
           </ul>
-
-
-
         </div>
       </div>
     </header>
@@ -124,8 +120,27 @@
         <button class="btn btn-secondary btn-bg" onclick="confirmFinish()"> Finish Task </button>
       </a>
     </div>
-
   </div>
+
+  <div class="container-fluid p-0 px-5 py-0" id="SampleText">
+    <div class="d-lg-flex col-sm justify-content-left mx-2">
+      <div>
+        <p><strong> Sample prompts: </strong>
+        <p>
+        <div>
+          &nbsp&nbsp A flower-patterned mug in cream gloss ceramic
+          with handle in wood, 3d rendering style.
+        </div>
+        <div>
+          &nbsp&nbsp A backpack for travellers in grey canvas with straps
+          in white padded mesh, cinematic style.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <!-- flex-column -->
   <div class="container-fluid p-0 my-2 py-4 px-5">
@@ -136,19 +151,40 @@
         <div class="nav-item dropdown mx-2">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" onclick="removeAll(); addInput('A watch'); addTag() 
-                addInput('straps'); addTag(); addStyle();">
-                Watch</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A mug'), addStyle();">
+                Mug (pilot) </a>
+            </li>
+            <li><a class="dropdown-item" onclick="removeAll(); createUl('A watch');  
+                createUl('straps'); addStyle();">
+                1. Watch </a>
+            </li>
+            <li><a class="dropdown-item" onclick="removeAll(); createUl('A coffee maker'), addStyle();">
+                2. Coffee Maker</a>
             </li>
             <li><a class="dropdown-item" onclick="removeAll(), createUl('An office chair'),
-                createUl('back'),createUl('legs'),addStyle()">
-                Office Chair</a>
-            <li><a class="dropdown-item" onclick="removeAll(), createUl('An electronic toothbrush'), 
+                createUl('back'), createUl('legs'),addStyle()">
+                3. Office Chair</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A trashbin'),
+                createUl('back'),addStyle()">
+                4. Trash Bin</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A watering can'), 
                 createUl('handle'),addStyle()">
-                Electronic Toothbrush</a>
-            <li><a class="dropdown-item" onclick="removeAll(),createUl('A backpack'),
-              createUl('straps'),addStyle()">
-                Backpack</a>
+                5. Watering Can</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A suitcase'),
+                createUl('wheels'), createUl('handle'), addStyle()">
+                6. Suitcase</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A desk lamp'),
+                createUl('stand'), addStyle()">
+                7. Desk Lamp</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('A jewelry box'),
+                createUl('storage area'), addStyle()">
+                8. Jewelry Box</a>
+            <li><a class="dropdown-item" onclick="removeAll(), createUl('An electronic toothbrush'), 
+                createUl('handle'), addStyle()">
+                9. Electronic Toothbrush</a>
+            <li><a class="dropdown-item" onclick="removeAll(),createUl('A toaster'), 
+              createUl('control buttons'), addStyle()">
+                10. Toaster</a>
               <div class="dropdown-divider"></div>
             <li><a class="dropdown-item" onclick="removeAll()">Clear</a>
             </li>
@@ -202,7 +238,6 @@
     </nav>
 
 
-
     <div class="container-fluid mb-3">
       <id="inline-text">
         <span class="text-muted" id="inline-text"> Suggested prompt: &nbsp
@@ -213,6 +248,7 @@
         <span class="font-weight-bold" id="materialText"></span>
         <span class="font-weight-bold" id="renderText"></span>
         <span class="font-weight-bold" id="fullText"></span>
+        <br>
     </div>
 
     <div class="row container mx-2" id="materialStuff">
