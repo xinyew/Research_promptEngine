@@ -1,6 +1,12 @@
 var components = 0 //keep track of how many components are there
 var tagRows = 0
 
+var clicks = 0
+timestamp_to_save = []
+imagelist_to_save = []
+prompt_to_save = []
+clicks_to_save = []
+
 // the function to make the delete icon on tags work
 function delSvgToLi(clicked_id) {
   svg = document.getElementById(clicked_id); // find the svg 
@@ -184,7 +190,6 @@ function highlightCard(tagId) {
   document.getElementById(cardId).classList.remove("text-body-tertiary");
   document.getElementById(cardId).classList.add("text-body-emphasis");
 
-
 }
 
 // function selectedStyle(id) {
@@ -270,6 +275,7 @@ function updateCustomCard(tagIdx) {
 }
 
 function changeThumbnail(thisId, cfmIdx, text) { //tagIdx is the component 
+  clicks += 1
   console.log(thisId)
   componentIdx = parseInt(thisId.split("#")[1])
   cardIdx = parseInt(thisId.split("#")[2])
@@ -513,6 +519,7 @@ function generateImg() {
 
 function confirmFinish() {
   confirm("Finish this design task and leave the page");
+  saveLog()
 }
 
 function removeAll() {

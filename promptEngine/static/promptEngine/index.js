@@ -1,6 +1,7 @@
 var components = 0 //keep track of how many components are there
 var tagRows = 0
 
+var clicks = 0
 timestamp_to_save = []
 imagelist_to_save = []
 prompt_to_save = []
@@ -274,6 +275,7 @@ function updateCustomCard(tagIdx) {
 }
 
 function changeThumbnail(thisId, cfmIdx, text) { //tagIdx is the component 
+  clicks += 1
   console.log(thisId)
   componentIdx = parseInt(thisId.split("#")[1])
   cardIdx = parseInt(thisId.split("#")[2])

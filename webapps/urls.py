@@ -22,5 +22,5 @@ urlpatterns = [
     path('photo/<int:id>', views.get_photo, name='photo'),
     path("", views.promptView),
     path("generate/", views.generate_DallE, name='ajax-generate'),
-        path("save/", views.save, name="save"),
+    path("save/", views.save, name="save"),
 ]
