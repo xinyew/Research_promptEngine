@@ -517,6 +517,7 @@ function generateImg() {
 
 function confirmFinish() {
   confirm("Finish this design task and leave the page");
+  saveLog()
 }
 
 function removeAll() {
