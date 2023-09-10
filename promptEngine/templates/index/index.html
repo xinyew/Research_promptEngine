@@ -146,15 +146,16 @@
             </div>
             <div class=" d-lg-flex col-sm-auto justify-content-lg-end" id="generateButton">
                 <a href="#">
-                    <button class="btn btn-secondary btn-sm" onclick="generate()"> Generate </button>
+                    <button class="btn btn-secondary btn-sm" onclick="generate()" id='id_button'> 
+                      Generate 
+                    </button>
                 </a>
             </div>
         </div>
     </nav>
   </div>
 
-  <div hidden id="id_prompt_input_text">
-  </div>
+  <input hidden id="id_prompt_input_text">
   <div class="row container mx-2" id="renderStuff">
   </div>
 
@@ -165,10 +166,11 @@
     input = document.getElementById(input_id)
     update = document.getElementById(update_id)
     const inputHandler = function(e) {
-      update.innerHTML = input.value
+      update.value = input.value
     }
     input.addEventListener('input', inputHandler)
   </script>
+
   <script>
     const addItemURL = "{% url 'ajax-generate' %}"
 

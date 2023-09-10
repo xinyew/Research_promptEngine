@@ -12,6 +12,10 @@ function getCSRFToken() {
 
 function generate() {
     prompt = document.getElementById("id_prompt_input_text").value
+    button = document.getElementById('id_button')
+    button.innerHTML = `<div class="spinner-border spinner-border-sm" role="status">
+        <span class="sr-only"></span>
+    </div>`
 
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
@@ -25,6 +29,8 @@ function generate() {
 }
 
 function updatePage(xhr) {
+    button = document.getElementById('id_button')
+    button.innerHTML = `Generate`
     if (xhr.status == 200) {
         let response = JSON.parse(xhr.responseText)
         updateList(response)
