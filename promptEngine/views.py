@@ -23,6 +23,28 @@ def promptView(request):
         context = {}
         return render(request, 'index/index.html')
 
+@csrf_exempt
+def save(request):
+    import platform
+    if platform.platform().startswith('Linux-5.15.0-'):
+        p = '/home/ubuntu/Research_promptEngine/log'
+    else:
+        p = os.path.join(os.getcwd(), 'log')    
+    print(request.POST)
+    with open(p, 'a+') as f:
+        f.write(request.POST["id"])
+        f.write('|')
+        f.write(request.POST["date"])
+        f.write('|')
+        f.write(request.POST["timestamps"])
+        f.write('|')
+        f.write(request.POST["prompts"])
+        f.write('|')
+        f.write(request.POST["clicks"])
+        f.write('|')
+        f.write(request.POST["images"])
+        f.write('|')
+        f.write('\n')
 
 @csrf_exempt
 def generate_DallE(request):

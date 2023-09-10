@@ -172,6 +172,13 @@
     clock.innerHTML = `Time: ${h}:${m}:${s}`
   }
   setInterval(add1Sec, 1000)
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  
+  id_to_save = getRandomInt(100000)
+  alert("Please copy the date below as your id:\n" + id_to_save)
   </script>
   <script>
     update_id = "id_prompt_input_text"
@@ -186,6 +193,7 @@
 
   <script>
     const addItemURL = "{% url 'ajax-generate' %}"
+    const saveURL = "{% url 'save' %}"
 
     function updateList(items) {
       re = document.getElementById("renderStuff")
